@@ -21,10 +21,10 @@ Berikut adalah panduan lengkap untuk melakukan testing API Microservices Perpust
     ```json
     {
         "nim": "2024001",
-        "nama": "Rivanzi Hidayatullah",
+        "nama": "Latifa Keysha",
         "alamat": "Jl. Teknologi No. 10",
-        "email": "rivanzi@example.com",
-        "jenis_kelamin": "L"
+        "email": "keysha@example.com",
+        "jenis_kelamin": "P"
     }
     ```
     *Catatan: `jenis_kelamin` hanya menerima nilai `"L"` (Laki-laki) atau `"P"` (Perempuan).*
@@ -44,10 +44,10 @@ Berikut adalah panduan lengkap untuk melakukan testing API Microservices Perpust
     ```json
     {
         "nim": "2024001",
-        "nama": "Rivanzi H Updated",
+        "nama": "Keysha Updated",
         "alamat": "Jl. Baru No. 5",
-        "email": "rivanzi.updated@example.com",
-        "jenis_kelamin": "L"
+        "email": "keysha.updated@example.com",
+        "jenis_kelamin": "P"
     }
     ```
 
@@ -68,7 +68,7 @@ Berikut adalah panduan lengkap untuk melakukan testing API Microservices Perpust
     ```json
     {
         "judul": "Belajar Microservices dengan Spring Boot",
-        "pengarang": "Rivanzi",
+        "pengarang": "keycantik",
         "penerbit": "Tech Press",
         "tahun_terbit": 2024
     }
@@ -89,7 +89,7 @@ Berikut adalah panduan lengkap untuk melakukan testing API Microservices Perpust
     ```json
     {
         "judul": "Belajar Microservices Edisi 2",
-        "pengarang": "Rivanzi",
+        "pengarang": "keycantik",
         "penerbit": "Tech Press",
         "tahun_terbit": 2025
     }
