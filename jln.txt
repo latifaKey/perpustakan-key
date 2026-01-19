@@ -1,0 +1,11 @@
+cd "d:\githubpbl\ABL_PerpustakaanService\api-gateway"; .\mvnw.cmd spring-boot:run
+
+cd "d:\githubpbl\ABL_PerpustakaanService\pengembalian"; .\mvnw.cmd spring-boot:run
+
+cd "d:\githubpbl\ABL_PerpustakaanService\peminjaman"; .\mvnw.cmd spring-boot:run
+
+cd "d:\githubpbl\ABL_PerpustakaanService\buku"; .\mvnw.cmd spring-boot:run
+
+cd "d:\githubpbl\ABL_PerpustakaanService\anggota"; .\mvnw.cmd spring-boot:run
+
+cd "d:\githubpbl\ABL_PerpustakaanService\eureka-server"; .\mvnw.cmd spring-boot:run

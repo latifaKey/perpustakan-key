@@ -1,0 +1,4 @@
+ Container rabbitmq  Creating
+ Container elasticsearch  Creating
+ Container elasticsearch  Error response from daemon: Conflict. The container name "/elasticsearch" is already in use by container "08474fc12dbb1452fea33f9324ee07143482c78e88d6fa26cce329672ecce698". You have to remove (or rename) that container to be able to reuse that name.
+Error response from daemon: Conflict. The container name "/elasticsearch" is already in use by container "08474fc12dbb1452fea33f9324ee07143482c78e88d6fa26cce329672ecce698". You have to remove (or rename) that container to be able to reuse that name.

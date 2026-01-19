@@ -1,0 +1,8 @@
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS     NAMES
+a6e200d59a20   03e91f888c2b   "docker-entrypoint.s…"   5 seconds ago    Up 4 seconds              k8s_wordpress_wordpress-deployment-d948cb794-9f7rv_default_47849a3a-3c4e-41f5-9a51-1e9335adcae4_89
+5b24273adae0   03e91f888c2b   "docker-entrypoint.s…"   5 minutes ago    Up 5 minutes              k8s_wordpress_wordpress-deployment-d948cb794-rgt6p_default_eb9d917f-1f09-48eb-a2fe-22473118a33a_84
+6a887267595c   c881927c4077   "/docker-entrypoint.…"   30 minutes ago   Up 30 minutes             k8s_nginx_nginx-deployment-86c57bc6b8-gtkjm_default_b3fc0dba-66e3-4493-864c-625e2207538a_11
+e24827092982   c881927c4077   "/docker-entrypoint.…"   30 minutes ago   Up 30 minutes             k8s_nginx_nginx_default_10d5fa5d-58a8-45e7-a215-1b8d1f84be0c_16
+e03763a7142e   c881927c4077   "/docker-entrypoint.…"   30 minutes ago   Up 30 minutes             k8s_nginx_nginx-deployment-86c57bc6b8-lz9qw_default_531c9897-81b6-4086-9dd6-a9229d3b972d_11
+d184e6862ccc   c881927c4077   "/docker-entrypoint.…"   31 minutes ago   Up 31 minutes             k8s_nginx_nginx-deployment-86c57bc6b8-c457x_default_81033f3b-5d43-4429-bafd-6738d5301f57_11
+ac567470e4e9   f37951fc3753   "docker-entrypoint.s…"   31 minutes ago   Up 31 minutes             k8s_mysql_mysql-deployment-6d5f4c7877-rx92t_default_1ab1e0f2-2e88-4772-9d82-3f1686846a2a_8

@@ -1,0 +1,213 @@
+pipeline {
+    agent any
+    
+    tools {
+        // 💡 PASTIKAN: Nama 'MAVEN' sesuai dengan yang ada di 
+        // Manage Jenkins -> Tools -> Global Tool Configuration
+        maven 'MAVEN'
+    }
+    
+    environment {
+        // Variabel environment untuk Docker
+        DOCKER_REGISTRY = 'your-registry'  // Ganti dengan registry Anda
+        IMAGE_TAG = "${BUILD_NUMBER}"
+    }
+    
+    stages {
+        // ====== STAGE 1: CHECKOUT ======
+        stage('Checkout') {
+            steps {
+                echo '📥 Cloning repository...'
+                checkout scm
+            }
+        }
+        
+        // ====== STAGE 2: BUILD ALL SERVICES (PARALLEL) ======
+        stage('Build All Services') {
+            parallel {
+                stage('Build Anggota') {
+                    steps {
+                        echo '🔨 Building Anggota Service...'
+                        dir('anggota') {
+                            sh 'mvn clean package -DskipTests'
+                        }
+                    }
+                }
+                stage('Build Buku') {
+                    steps {
+                        echo '🔨 Building Buku Service...'
+                        dir('buku') {
+                            sh 'mvn clean package -DskipTests'
+                        }
+                    }
+                }
+                stage('Build Peminjaman') {
+                    steps {
+                        echo '🔨 Building Peminjaman Service...'
+                        dir('peminjaman') {
+                            sh 'mvn clean package -DskipTests'
+                        }
+                    }
+                }
+                stage('Build Pengembalian') {
+                    steps {
+                        echo '🔨 Building Pengembalian Service...'
+                        dir('pengembalian') {
+                            sh 'mvn clean package -DskipTests'
+                        }
+                    }
+                }
+            }
+        }
+        
+        // ====== STAGE 3: TEST ALL SERVICES (PARALLEL) ======
+        stage('Test All Services') {
+            parallel {
+                stage('Test Anggota') {
+                    steps {
+                        echo '🧪 Testing Anggota Service...'
+                        dir('anggota') {
+                            sh 'mvn test'
+                        }
+                    }
+                    post {
+                        always {
+                            junit allowEmptyResults: true, testResults: 'anggota/target/surefire-reports/*.xml'
+                        }
+                    }
+                }
+                stage('Test Buku') {
+                    steps {
+                        echo '🧪 Testing Buku Service...'
+                        dir('buku') {
+                            sh 'mvn test'
+                        }
+                    }
+                    post {
+                        always {
+                            junit allowEmptyResults: true, testResults: 'buku/target/surefire-reports/*.xml'
+                        }
+                    }
+                }
+                stage('Test Peminjaman') {
+                    steps {
+                        echo '🧪 Testing Peminjaman Service...'
+                        dir('peminjaman') {
+                            sh 'mvn test'
+                        }
+                    }
+                    post {
+                        always {
+                            junit allowEmptyResults: true, testResults: 'peminjaman/target/surefire-reports/*.xml'
+                        }
+                    }
+                }
+                stage('Test Pengembalian') {
+                    steps {
+                        echo '🧪 Testing Pengembalian Service...'
+                        dir('pengembalian') {
+                            sh 'mvn test'
+                        }
+                    }
+                    post {
+                        always {
+                            junit allowEmptyResults: true, testResults: 'pengembalian/target/surefire-reports/*.xml'
+                        }
+                    }
+                }
+            }
+        }
+        
+        // ====== STAGE 4: BUILD DOCKER IMAGES ======
+        stage('Build Docker Images') {
+            steps {
+                echo '🐳 Building Docker images...'
+                script {
+                    sh '''
+                        docker compose build anggota-service
+                        docker compose build buku-service
+                        docker compose build peminjaman-service
+                        docker compose build pengembalian-service
+                    '''
+                }
+            }
+        }
+        
+        // ====== STAGE 5: DEPLOY TO DOCKER ======
+        stage('Deploy') {
+            steps {
+                echo '🚀 Deploying services...'
+                script {
+                    sh '''
+                        docker compose up -d server-eureka
+                        sleep 30
+                        docker compose up -d rabbitmq
+                        sleep 15
+                        docker compose up -d anggota-service buku-service peminjaman-service pengembalian-service
+                        sleep 30
+                        docker compose up -d api-gateway
+                    '''
+                }
+            }
+        }
+        
+        // ====== STAGE 6: HEALTH CHECK ======
+        stage('Health Check') {
+            steps {
+                echo '🏥 Checking service health...'
+                script {
+                    sh '''
+                        sleep 30
+                        echo "Checking Anggota Service..."
+                        curl -f http://anggota-service:8081/actuator/health || exit 1
+                        echo "Checking Buku Service..."
+                        curl -f http://buku-service:8082/actuator/health || exit 1
+                        echo "Checking Peminjaman Service..."
+                        curl -f http://peminjaman-service:8083/actuator/health || exit 1
+                        echo "Checking Pengembalian Service..."
+                        curl -f http://pengembalian-service:8084/actuator/health || exit 1
+                        echo "✅ All services are healthy!"
+                    '''
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo '''
+            ═══════════════════════════════════════════════════════
+            ✅ PIPELINE SUCCESSFUL!
+            ═══════════════════════════════════════════════════════
+            
+            All 4 microservices have been built, tested, and deployed:
+               ✅ Anggota Service    → http://localhost:8081
+               ✅ Buku Service       → http://localhost:8082
+               ✅ Peminjaman Service → http://localhost:8083
+               ✅ Pengembalian Service → http://localhost:8084
+            
+            📊 Monitoring:
+               • Eureka Dashboard   → http://localhost:8761
+               • RabbitMQ UI        → http://localhost:15672
+               • Prometheus         → http://localhost:9090
+               • Grafana            → http://localhost:3000
+               • Kibana             → http://localhost:5601
+            ═══════════════════════════════════════════════════════
+            '''
+        }
+        failure {
+            echo '''
+            ═══════════════════════════════════════════════════════
+            ❌ PIPELINE FAILED!
+            ═══════════════════════════════════════════════════════
+            Check the console output above for error details.
+            ═══════════════════════════════════════════════════════
+            '''
+        }
+        always {
+            echo "🔄 Pipeline completed at: ${new Date().format('yyyy-MM-dd HH:mm:ss')}"
+            // Cleanup workspace (optional)
+            // cleanWs()
+        }
+    }
+}

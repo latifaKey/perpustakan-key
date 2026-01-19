@@ -1,0 +1,39 @@
+CONTAINER ID   IMAGE                                                  COMMAND                  CREATED              STATUS                      PORTS     NAMES
+c292699e47f7   docker.elastic.co/kibana/kibana:8.11.1                 "/bin/tini -- /usr/l…"   44 seconds ago       Created                               kibana
+7470699e742a   docker.elastic.co/logstash/logstash:8.11.1             "/usr/local/bin/dock…"   44 seconds ago       Created                               logstash
+11e97b6eefca   grafana/grafana:latest                                 "/run.sh"                45 seconds ago       Created                               grafana
+b6cb5bdafe2a   rabbitmq:3-management-alpine                           "docker-entrypoint.s…"   45 seconds ago       Created                               rabbitmq
+156d33fd5931   docker.elastic.co/elasticsearch/elasticsearch:8.11.1   "/bin/tini -- /usr/l…"   45 seconds ago       Created                               elasticsearch
+555a0e9cea8c   prom/prometheus:latest                                 "/bin/prometheus --c…"   45 seconds ago       Created                               prometheus
+4288860e68e0   steeltoeoss/eureka-server                              "java -Djava.securit…"   45 seconds ago       Created                               server-eureka
+0b46dc943412   03e91f888c2b                                           "docker-entrypoint.s…"   About a minute ago   Up 59 seconds                         k8s_wordpress_wordpress-deployment-d948cb794-9f7rv_default_47849a3a-3c4e-41f5-9a51-1e9335adcae4_90
+2fc7de1cdd05   03e91f888c2b                                           "docker-entrypoint.s…"   About a minute ago   Up About a minute                     k8s_wordpress_wordpress-deployment-d948cb794-rgt6p_default_eb9d917f-1f09-48eb-a2fe-22473118a33a_85
+9cd925a86d7f   jenkins/jenkins:lts                                    "/usr/bin/tini -- /u…"   4 minutes ago        Created                               jenkins
+6a887267595c   c881927c4077                                           "/docker-entrypoint.…"   32 minutes ago       Up 32 minutes                         k8s_nginx_nginx-deployment-86c57bc6b8-gtkjm_default_b3fc0dba-66e3-4493-864c-625e2207538a_11
+e24827092982   c881927c4077                                           "/docker-entrypoint.…"   32 minutes ago       Up 32 minutes                         k8s_nginx_nginx_default_10d5fa5d-58a8-45e7-a215-1b8d1f84be0c_16
+e03763a7142e   c881927c4077                                           "/docker-entrypoint.…"   32 minutes ago       Up 32 minutes                         k8s_nginx_nginx-deployment-86c57bc6b8-lz9qw_default_531c9897-81b6-4086-9dd6-a9229d3b972d_11
+d184e6862ccc   c881927c4077                                           "/docker-entrypoint.…"   32 minutes ago       Up 32 minutes                         k8s_nginx_nginx-deployment-86c57bc6b8-c457x_default_81033f3b-5d43-4429-bafd-6738d5301f57_11
+ac567470e4e9   f37951fc3753                                           "docker-entrypoint.s…"   32 minutes ago       Up 32 minutes                         k8s_mysql_mysql-deployment-6d5f4c7877-rx92t_default_1ab1e0f2-2e88-4772-9d82-3f1686846a2a_8
+8f188e5b8e5c   docker.elastic.co/beats/filebeat:8.12.0                "/usr/bin/tini -- /u…"   6 weeks ago          Created                               filebeat
+1628168823d9   perpustakaan-api-gateway                               "java -jar app.jar"      2 months ago         Exited (143) 8 weeks ago              api-gateway
+4ae0dde99c9e   perpustakaan-pengembalian-service                      "java -jar app.jar"      2 months ago         Exited (143) 8 weeks ago              pengembalian-service
+d2c74c3e761c   perpustakaan-peminjaman-service                        "java -jar app.jar"      2 months ago         Exited (143) 8 weeks ago              peminjaman-service
+29966b0cc5dd   perpustakaan-buku-service                              "java -jar app.jar"      2 months ago         Exited (143) 8 weeks ago              buku-service
+477e251a34ea   perpustakaan-anggota-service                           "java -jar app.jar"      2 months ago         Exited (143) 8 weeks ago              anggota-service
+96bfa18aa9b1   buku-service:1.0                                       "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             buku
+9329f8d7a1af   anggota-service:1.0                                    "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             anggota
+cb13cf0cd1cd   bee4156552fe                                           "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             order-service
+9bcc6d21aaca   4c0ed5640975                                           "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             pelanggan-service
+99138a97c189   d1218f9df112                                           "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             produk-service
+f2f4b1707c2b   docker/compose:debian-1.29.2                           "sh /usr/local/bin/d…"   2 months ago         Exited (0) 2 months ago               loving_rhodes
+170e1ea99a50   api_gateway-service:1.0                                "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             api_gateway
+848b3eaf3eef   eureka-service:1.0                                     "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             eureka
+869b86f1cd6d   pelanggan-service:1.0                                  "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             pelanggan
+1858a5d58604   order-service:1.0                                      "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             order
+16162696b61e   produk-service:1.0                                     "java -jar app.jar"      2 months ago         Exited (143) 2 months ago             produk
+a866084d6a90   1beed3ca46ac                                           "/docker-entrypoint.…"   2 months ago         Created                               nginx3
+be52c80c68e1   1beed3ca46ac                                           "/docker-entrypoint.…"   2 months ago         Created                               nginx2
+f0e471e8e69a   1beed3ca46ac                                           "/docker-entrypoint.…"   2 months ago         Exited (0) 2 months ago               nginx1
+cb26e8e6f595   rabbitmq:latest                                        "docker-entrypoint.s…"   3 months ago         Exited (0) 3 months ago               happy_driscoll
+30d2c8c5366a   rabbitmq:latest                                        "docker-entrypoint.s…"   3 months ago         Exited (0) 3 months ago               intelligent_gagarin
+fac4717007fe   rabbitmq:latest                                        "docker-entrypoint.s…"   3 months ago         Exited (0) 3 months ago               boring_hofstadter
