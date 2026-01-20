@@ -6,7 +6,7 @@ pipeline {
     }
     
     tools {
-        maven 'MAVEN'
+        maven 'maven-3'
         // JDK menggunakan bawaan dari Jenkins container
     }
     
